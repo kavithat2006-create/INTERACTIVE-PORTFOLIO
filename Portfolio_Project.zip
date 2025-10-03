@@ -1,0 +1,213 @@
+index.html<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tamma Kavitha | Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav>
+    <h2>Kavitha</h2>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button id="theme-toggle">🌙</button>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <h1>Hello, I'm <span class="highlight">Tamma Kavitha</span></h1>
+    <p><span id="typed-text"></span></p>
+    <a href="#contact" class="btn">Get in Touch</a>
+  </header>
+
+  <!-- About -->
+  <section id="about" class="section hidden">
+    <h2>About Me</h2>
+    <p>
+      Passionate ECE undergraduate focused on web development with 
+      strong problem-solving skills. I love creating interactive, 
+      user-friendly websites and exploring UI/UX trends.
+    </p>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="section hidden">
+    <h2>Skills</h2>
+    <div class="skills-grid">
+      <div class="skill">HTML</div>
+      <div class="skill">CSS</div>
+      <div class="skill">JavaScript</div>
+      <div class="skill">Python</div>
+      <div class="skill">Git</div>
+      <div class="skill">UI/UX Trends</div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="section hidden">
+    <h2>Projects</h2>
+    <div class="project-card">
+      <h3>Portfolio Website</h3>
+      <p>Personal website built with HTML, CSS, and JS to showcase skills & resume.</p>
+    </div>
+    <div class="project-card">
+      <h3>Student Result Management System</h3>
+      <p>Basic UI for managing student results, focusing on front-end design.</p>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="section hidden">
+    <h2>Contact Me</h2>
+    <form id="contact-form">
+      <input type="text" id="name" placeholder="Your Name" required>
+      <input type="email" id="email" placeholder="Your Email" required>
+      <textarea id="message" placeholder="Your Message" required></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Tamma Kavitha | Built with ❤️</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
+style.css* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
+body { background: #f9f9f9; color: #333; transition: background 0.3s, color 0.3s; }
+
+nav {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 15px 30px; background: #2575fc; color: white;
+}
+nav ul { display: flex; list-style: none; }
+nav ul li { margin: 0 15px; }
+nav ul li a { color: white; text-decoration: none; font-weight: bold; }
+#theme-toggle { background: none; border: none; font-size: 20px; cursor: pointer; color: white; }
+
+.hero {
+  text-align: center; padding: 80px 20px;
+  background: linear-gradient(120deg, #6a11cb, #2575fc);
+  color: white;
+}
+.hero h1 { font-size: 2.5rem; }
+.hero .highlight { color: #ffeb3b; }
+.hero p { margin: 15px 0; font-size: 1.2rem; }
+.btn {
+  display: inline-block; padding: 10px 20px; margin-top: 15px;
+  background: white; color: #2575fc; border-radius: 6px;
+  text-decoration: none; transition: 0.3s;
+}
+.btn:hover { background: #ffeb3b; }
+
+.section { padding: 60px 20px; text-align: center; }
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 15px; margin-top: 20px; }
+.skill {
+  background: #2575fc; color: white; padding: 15px;
+  border-radius: 8px; transition: transform 0.3s;
+}
+.skill:hover { transform: scale(1.1); }
+
+.project-card {
+  background: white; padding: 20px; margin: 15px auto;
+  border-radius: 10px; max-width: 500px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+.project-card:hover { transform: scale(1.05); }
+
+form { max-width: 400px; margin: auto; display: flex; flex-direction: column; }
+form input, form textarea {
+  margin: 10px 0; padding: 10px; border: 1px solid #ccc; border-radius: 6px;
+}
+form button {
+  padding: 10px; background: #2575fc; color: white; border: none;
+  border-radius: 6px; cursor: pointer; transition: 0.3s;
+}
+form button:hover { background: #6a11cb; }
+
+footer { text-align: center; padding: 20px; background: #222; color: white; margin-top: 30px; }
+
+/* Hidden sections for reveal */
+.hidden { opacity: 0; transform: translateY(30px); transition: 0.6s ease-in-out; }
+.show { opacity: 1; transform: translateY(0); }
+
+/* Dark Mode */
+.dark { background: #121212; color: #eee; }
+.dark nav { background: #000; }
+.dark .btn { background: #333; color: #fff; }
+.dark .skill { background: #444; }
+script.js// Typing Effect
+const typedText = document.getElementById("typed-text");
+const textArray = ["Web Developer", "UI/UX Enthusiast", "Problem Solver"];
+let textIndex = 0, charIndex = 0;
+
+function typeEffect() {
+  if (charIndex < textArray[textIndex].length) {
+    typedText.textContent += textArray[textIndex].charAt(charIndex);
+    charIndex++;
+    setTimeout(typeEffect, 100);
+  } else {
+    setTimeout(eraseEffect, 1500);
+  }
+}
+function eraseEffect() {
+  if (charIndex > 0) {
+    typedText.textContent = textArray[textIndex].substring(0, charIndex - 1);
+    charIndex--;
+    setTimeout(eraseEffect, 50);
+  } else {
+    textIndex = (textIndex + 1) % textArray.length;
+    setTimeout(typeEffect, 500);
+  }
+}
+document.addEventListener("DOMContentLoaded", () => typeEffect());
+
+// Scroll Reveal
+const sections = document.querySelectorAll(".hidden");
+window.addEventListener("scroll", () => {
+  sections.forEach(sec => {
+    const secTop = sec.getBoundingClientRect().top;
+    if (secTop < window.innerHeight - 50) sec.classList.add("show");
+  });
+});
+
+// Smooth Scroll
+document.querySelectorAll("nav a").forEach(anchor => {
+  anchor.addEventListener("click", function(e) {
+    e.preventDefault();
+    document.querySelector(this.getAttribute("href")).scrollIntoView({
+      behavior: "smooth"
+    });
+  });
+});
+
+// Dark Mode Toggle
+const toggleBtn = document.getElementById("theme-toggle");
+toggleBtn.addEventListener("click", () => {
+  document.body.classList.toggle("dark");
+  toggleBtn.textContent = document.body.classList.contains("dark") ? "☀️" : "🌙";
+});
+
+// Form Validation
+document.getElementById("contact-form").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const message = document.getElementById("message").value.trim();
+
+  if (!name || !email || !message) {
+    alert("⚠️ Please fill all fields!");
+    return;
+  }
+  alert("✅ Thank you! Your message has been sent.");
+  e.target.reset();
+});
